@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+  header("Location: logare/login.php");
+  exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="ro">
 <head>
@@ -6,7 +13,7 @@
   <title>Smart Home - Componente</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="css/components.css">
-
+</head>
 <body>
   <div id="particles-js"></div>
   <div class="container">
@@ -15,7 +22,8 @@
         <h1><i class="fas fa-microchip"></i> Componente Smart Home</h1>
         <div class="user-info">
           <i class="fas fa-user"></i>
-          <span>Kuturov-dev</span>
+          <span><?php echo htmlspecialchars($_SESSION['username']); ?></span>
+          <a href="logare/logout.php" style="color: #f44336; margin-left: 10px;">Logout</a>
         </div>
       </div>
       <div class="datetime-container">
@@ -26,7 +34,6 @@
 
     <main>
       <div class="component-grid">
-        <!-- Exemplu: ESP32 Board -->
         <div class="component-card">
           <h2><i class="fas fa-microchip"></i> ESP32 Board</h2>
           <div class="component-image-container">
@@ -40,7 +47,6 @@
           </button>
         </div>
 
-        <!-- Exemplu: Senzor BME280 -->
         <div class="component-card">
           <h2><i class="fas fa-thermometer-half"></i> Senzor BME280</h2>
           <div class="component-image-container">
@@ -54,7 +60,6 @@
           </button>
         </div>
 
-        <!-- Exemplu: Modul Relee 4 Canale -->
         <div class="component-card">
           <h2><i class="fas fa-plug"></i> Modul Relee 4 Canale</h2>
           <div class="component-image-container">
@@ -68,7 +73,6 @@
           </button>
         </div>
 
-        <!-- Exemplu: Modul LED RGB -->
         <div class="component-card">
           <h2><i class="fas fa-lightbulb"></i> Modul LED RGB</h2>
           <div class="component-image-container">
@@ -82,7 +86,6 @@
           </button>
         </div>
 
-        <!-- Exemplu: Modul Card SD -->
         <div class="component-card">
           <h2><i class="fas fa-sd-card"></i> Modul Card SD</h2>
           <div class="component-image-container">
@@ -96,7 +99,6 @@
           </button>
         </div>
 
-        <!-- Exemplu: Modul Încărcare -->
         <div class="component-card">
           <h2><i class="fas fa-battery-three-quarters"></i> Modul Încărcare</h2>
           <div class="component-image-container">
@@ -110,7 +112,6 @@
           </button>
         </div>
 
-        <!-- Exemplu: Acumulator -->
         <div class="component-card">
           <h2><i class="fas fa-battery-full"></i> Acumulator</h2>
           <div class="component-image-container">
@@ -124,7 +125,6 @@
           </button>
         </div>
 
-        <!-- Exemplu: Carcasă -->
         <div class="component-card">
           <h2><i class="fas fa-box"></i> Carcasă</h2>
           <div class="component-image-container">
@@ -140,9 +140,29 @@
       </div>
     </main>
 
+    <section class="navigation-card">
+      <div class="card">
+        <h2><i class="fas fa-link"></i> Navigare</h2>
+        <div class="navigation-grid">
+          <a href="index.php" class="nav-button">
+            <i class="fas fa-home"></i> Acasă
+          </a>
+          <a href="livingroom.php" class="nav-button">
+            <i class="fas fa-couch"></i> Living
+          </a>
+          <a href="bedroom.php" class="nav-button">
+            <i class="fas fa-bed"></i> Dormitor
+          </a>
+          <a href="components.php" class="nav-button">
+            <i class="fas fa-microchip"></i> Componente
+          </a>
+        </div>
+      </div>
+    </section>
+
     <footer>
       <div class="footer-content">
-        <p>&copy; 2025 By <span class="highlight">Kuturov-dev</span></p>
+        <p>&copy; 2025 By <span class="highlight">Kuturov</span></p>
       </div>
     </footer>
   </div>

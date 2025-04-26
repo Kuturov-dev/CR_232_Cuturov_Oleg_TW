@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+  header("Location: logare/login.php");
+  exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="ro">
 <head>
@@ -15,7 +22,8 @@
         <h1><i class="fas fa-couch"></i> Living Room Control</h1>
         <div class="user-info">
           <i class="fas fa-user"></i>
-          <span>Kuturov-dev</span>
+          <span><?php echo htmlspecialchars($_SESSION['username']); ?></span>
+          <a href="logare/logout.php" style="color: #f44336; margin-left: 10px;">Logout</a>
         </div>
       </div>
       <div class="datetime-container">
@@ -81,16 +89,16 @@
         <div class="card">
           <h2><i class="fas fa-link"></i> Navigare</h2>
           <div class="navigation-grid">
-            <a href="index.html" class="nav-button">
+            <a href="index.php" class="nav-button">
               <i class="fas fa-home"></i> Acasă
             </a>
-            <a href="kitchen.html" class="nav-button">
+            <a href="kitchen.php" class="nav-button">
               <i class="fas fa-kitchen-set"></i> Bucătărie
             </a>
-            <a href="bedroom.html" class="nav-button">
+            <a href="bedroom.php" class="nav-button">
               <i class="fas fa-bed"></i> Dormitor
             </a>
-            <a href="components.html" class="nav-button">
+            <a href="components.php" class="nav-button">
               <i class="fas fa-microchip"></i> Componente
             </a>
           </div>
@@ -100,7 +108,7 @@
 
     <footer>
       <div class="footer-content">
-        <p>&copy; 2025 By <span class="highlight">Kuturov-dev</span></p>
+        <p>&copy; 2025 By <span class="highlight">Kuturov</span></p>
       </div>
     </footer>
   </div>

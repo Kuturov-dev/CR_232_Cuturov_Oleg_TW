@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+  header("Location: logare/login.php");
+  exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="ro">
 <head>
@@ -15,7 +22,8 @@
         <h1><i class="fas fa-home"></i> Demo Smart Home Control</h1>
         <div class="user-info">
           <i class="fas fa-user"></i>
-          <span>Kuturov-dev</span>
+          <span><?php echo htmlspecialchars($_SESSION['username']); ?></span>
+          <a href="logare/logout.php" style="color: #f44336; margin-left: 10px;">Logout</a>
         </div>
       </div>
       <div class="datetime-container">
@@ -24,7 +32,6 @@
       </div>
     </header>
     <main>
-      <!-- Conținutul paginii -->
       <section class="sensor-card">
         <div class="card">
           <h2><i class="fas fa-microchip"></i> ESP32 Senzori</h2>
@@ -79,16 +86,16 @@
         <div class="card">
           <h2><i class="fas fa-link"></i> Navigare</h2>
           <div class="navigation-grid">
-            <a href="bedroom.html" class="nav-button">
+            <a href="bedroom.php" class="nav-button">
               <i class="fas fa-bed"></i> Dormitor
             </a>
-            <a href="livingroom.html" class="nav-button">
+            <a href="livingroom.php" class="nav-button">
               <i class="fas fa-couch"></i> Living
             </a>
-            <a href="kitchen.html" class="nav-button">
+            <a href="kitchen.php" class="nav-button">
               <i class="fas fa-kitchen-set"></i> Bucătărie
             </a>
-            <a href="components.html" class="nav-button">
+            <a href="components.php" class="nav-button">
               <i class="fas fa-microchip"></i> Componente
             </a>
           </div>
@@ -97,11 +104,10 @@
     </main>
     <footer>
       <div class="footer-content">
-        <p>&copy; 2025 By <span class="highlight">Kuturov-dev</span></p>
+        <p>&copy; 2025 By <span class="highlight">Kuturov</span></p>
       </div>
     </footer>
   </div>
-
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script src="js/particle-init.js"></script>
   <script src="js/global.js"></script>
