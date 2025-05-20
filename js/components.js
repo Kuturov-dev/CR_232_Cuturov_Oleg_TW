@@ -1,6 +1,5 @@
 console.log("components.js loaded");  // Mesaj de debugging pentru a verifica încărcarea fișierului
 
-// Obiectul cu informațiile componentelor
 const componentInfo = {
   esp32: {
     title: "ESP32 Board",
@@ -82,7 +81,6 @@ function closeModal() {
   document.getElementById("infoModal").style.display = "none";
 }
 
-// Închide modalul dacă se face click în afara zonei de conținut
 window.onclick = function(event) {
   const modal = document.getElementById("infoModal");
   if (event.target === modal) {

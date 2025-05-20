@@ -123,5 +123,6 @@ if (!isset($_SESSION['user_id'])) {
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script src="js/particle-init.js"></script>
   <script src="js/global.js"></script>
+    <script src="js/livingroom-data.js"></script>
 </body>
 </html>

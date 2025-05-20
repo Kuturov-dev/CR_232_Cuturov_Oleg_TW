@@ -19,16 +19,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error = "Deja există un cont cu acest email!";
         } else {
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-            // Generăm un token pentru confirmarea emailului
             $emailToken = bin2hex(random_bytes(16));
-            // Inserăm contul nou, setând implicit email_verified la false
             $insertSql  = "INSERT INTO users (username, email, password, email_token) VALUES ($1, $2, $3, $4)";
             $insertStmt = pg_prepare($dbconn, "insert_user", $insertSql);
             $insertRes  = pg_execute($dbconn, "insert_user", array($username, $email, $hashedPassword, $emailToken));
             
             if ($insertRes) {
-                // În producție, aici s-ar trimite un email cu link-ul de confirmare.
-                // Pentru test local, afișăm direct link-ul de confirmare:
                 $success = "Înregistrare reușită! Verificați emailul pentru a vă confirma contul.<br>" .
                            "Link de test: <a href='verify_email.php?token={$emailToken}'>Click aici pentru confirmare</a>";
             } else {
